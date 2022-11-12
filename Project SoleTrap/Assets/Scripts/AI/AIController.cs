@@ -44,7 +44,7 @@ public class AIController : MonoBehaviour
         {
             if (destiation.GetComponent<Room>())
             {
-                if (destiation.GetComponent<Room>().workingLvl >= 100)
+                if (destiation.GetComponent<Room>().WorkingLvl >= 100)
                 {
                     destiation = null;
                     anim.SetBool("working", false);
@@ -53,7 +53,7 @@ public class AIController : MonoBehaviour
                 else
                 {
                     anim.SetBool("walking", false);
-                    destiation.GetComponent<Room>().isWarkig = true;
+                    destiation.GetComponent<Room>().IsWorkig = true;
                     anim.SetBool("working", true);
                 }
             }
@@ -90,19 +90,19 @@ public class AIController : MonoBehaviour
         int number = 0;
         for (int i = 0; i < rooms.Length; i++)
         {
-            if (rooms[i].isEmpty && rooms[i].workingLvl < 100)
+            if (rooms[i].IsEmpty && rooms[i].WorkingLvl < 100)
             {
-                if (intrestinglvl <= rooms[i].intresting)
+                if (intrestinglvl <= rooms[i].Intresting)
                 {
-                    intrestinglvl = rooms[i].intresting;
+                    intrestinglvl = rooms[i].Intresting;
                     number = i;
                 }
             }
         }
-        if (rooms[number].isEmpty)
+        if (rooms[number].IsEmpty)
         {
             destiation = rooms[number].transform;
-            rooms[number].isEmpty = false;
+            rooms[number].IsEmpty = false;
         }
     }
 

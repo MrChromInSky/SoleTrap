@@ -6,10 +6,30 @@ public class Room : MonoBehaviour
 {
     //public roomType;
 
-    public float workingLvl = 0;
-    public float intresting = 100;
-    public bool isEmpty = true;
-    public bool isWarkig = false;
+    [SerializeField] private float workingLvl = 0;
+    public float WorkingLvl
+    {
+        set { workingLvl = value; }
+        get { return workingLvl; }
+    }
+    [SerializeField] private float intresting = 100;
+    public float Intresting
+    {
+        set { intresting = value; }
+        get { return intresting; }
+    }
+    [SerializeField] private bool isEmpty = true;
+    public bool IsEmpty
+    {
+        set { isEmpty = value; }
+        get { return isEmpty; }
+    }
+    [SerializeField] private bool isWorkig = false;
+    public bool IsWorkig
+    {
+        set { isWorkig = value; }
+        get { return isWorkig; }
+    }
 
     void Start()
     {
@@ -18,7 +38,7 @@ public class Room : MonoBehaviour
 
     void Update()
     {
-        if(isWarkig)
+        if(isWorkig)
         {
             workingLvl += 0.5f * Time.deltaTime;
         }
