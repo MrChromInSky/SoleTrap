@@ -5,27 +5,20 @@ using UnityEngine;
 public class ScaryEvent : MonoBehaviour
 {
 
-    public bool isWarking = false;
+    private float timer = 1.5f;
 
-    void Start()
+    private void Update()
     {
-        
+        timer -= 1 * Time.deltaTime;
+        if(timer <= 0)
+            Destroy(gameObject);
     }
-
-    void Update()
-    {
-        
-    }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.tag == "Human" && isWarking)
+        if (other.transform.root.tag == "Human")
         {
             other.transform.GetComponent<AIController>().JumpScare(40);
-            isWarking = false;
-            Destroy(gameObject);
         }
     }
 }

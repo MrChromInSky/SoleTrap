@@ -9,7 +9,6 @@ public class AIController : MonoBehaviour
 {
     public float sanitylvl = 100;
     public Transform destiation;
-    public Transform destiationBackUp;
     public Transform home;
 
     private NavMeshAgent agent;
@@ -77,7 +76,6 @@ public class AIController : MonoBehaviour
             timerBo -= 0.5f * Time.deltaTime;
             if(timerBo <= 0)
             {
-                destiation = destiationBackUp;
                 agent.Resume();
                 boo = false;
             }
@@ -108,17 +106,21 @@ public class AIController : MonoBehaviour
 
     public void JumpScare(float sanityPoits)
     {
-        sanitylvl -= sanityPoits;
-        boo = true;
-        timerBo = 3;
-        anim.SetTrigger("boo");
-        destiationBackUp = destiation;
-        destiation = null;
-        agent.Stop();
-        if(sanitylvl <= 0)
+        if (!boo)
         {
-            agent.Resume();
-            boo = false;
+            destiation.GetComponent<Room>().IsEmpty = true;
+            destiation.GetComponent<Room>().IsWorkig = false;
+            sanitylvl -= sanityPoits;
+            timerBo = 3;
+            anim.SetTrigger("boo");
+            destiation = null;
+            agent.Stop();
+            if (sanitylvl <= 0)
+            {
+                agent.Resume();
+                boo = false;
+            }
+            boo = true;
         }
     }
 }
