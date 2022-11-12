@@ -5,7 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public enum RoomType { map, ring }
-
+    
     public const float WorkSpeed = 0.5f;
     [Header("Properties")]
     [SerializeField] private float workingLvl = 0;
