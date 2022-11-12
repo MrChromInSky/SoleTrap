@@ -4,34 +4,48 @@ using UnityEngine;
 
 public class SpelsMehanics : MonoBehaviour
 {
-    public float manna = 0f;
+    public const float CooldownRecoverySpeed = 1f;
 
-    public float magicNumber = 1;
+    [Header("Properties")]
+    [SerializeField] private static float manna = 0f;
+    public static float Manna
+    {
+        set { manna = value; }
+        get { return manna; }
+    }
+    [SerializeField] private float magicNumber = 1f;
+    public float MagicNumber
+    {
+        set { magicNumber = value; }
+        get { return magicNumber; }
+    }
 
-    public GameObject[] objects;
-    public float[] colldwon;
+    [SerializeField]
+    private GameObject[] prefabs;
+
+    private static List<Spell> spellList = new List<Spell>();
 
     void Start()
     {
-        
+        spellList.Add(new SpellSummonGhost(40, 45, 15, prefabs[0], 2));
     }
 
     void Update()
     {
         manna += magicNumber * Time.deltaTime;
-        for (int i = 0; i < colldwon.Length; i++)
+        foreach(Spell spell in spellList) 
         {
-            colldwon[i] += 1 * Time.deltaTime;
+            spell.UpdateCooldown(CooldownRecoverySpeed * Time.deltaTime);
         }
     }
 
-    public void GhostEvent()
+    public void CastSpell(int index)
     {
-        if(colldwon[0] >= 30 && manna >= 20)
-        {
-            manna -= 20;
-            GameObject ghost = Instantiate(objects[0], transform) as GameObject;
-            colldwon[0] = 0;
-        }
+        spellList[index].SpellEffect(transform);
+    }
+
+    public static void CreateEvent(GameObject eventToCreate, Transform transform)
+    {
+        GameObject ghost = Instantiate(eventToCreate, transform);
     }
 }
