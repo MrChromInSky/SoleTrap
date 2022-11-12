@@ -34,7 +34,6 @@ public class AIController : MonoBehaviour
         {
             FindDestinatin();
         }
-
         else if (transform.position.x != destiation.position.x || transform.position.z != destiation.position.z)
         {
             agent.SetDestination(destiation.position);
@@ -102,7 +101,7 @@ public class AIController : MonoBehaviour
         if (rooms[number].IsEmpty)
         {
             destiation = rooms[number].transform;
-            rooms[number].IsEmpty = false;
+            rooms[number].AssignRoom(this);
         }
     }
 

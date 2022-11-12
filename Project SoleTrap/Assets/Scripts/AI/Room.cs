@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    //public roomType;
-
+    public const float WorkSpeed = 0.5f;
+    [Header("Properties")]
     [SerializeField] private float workingLvl = 0;
     public float WorkingLvl
     {
@@ -21,7 +21,7 @@ public class Room : MonoBehaviour
     [SerializeField] private bool isEmpty = true;
     public bool IsEmpty
     {
-        set { isEmpty = value; }
+        private set { isEmpty = value; }
         get { return isEmpty; }
     }
     [SerializeField] private bool isWorkig = false;
@@ -30,18 +30,40 @@ public class Room : MonoBehaviour
         set { isWorkig = value; }
         get { return isWorkig; }
     }
+    [Header("Private Fields")]
+    [SerializeField] private GameObject water;
+    [SerializeField] private AIController assignedAI = null;
 
-    void Start()
-    {
-        
-    }
+    public bool debugFlood = false;
 
     void Update()
     {
         if(isWorkig)
         {
-            workingLvl += 0.5f * Time.deltaTime;
+            workingLvl += WorkSpeed * Time.deltaTime;
         }
+        if (debugFlood)
+            Flood();
+    }
+
+    public void AssignRoom(AIController assignee)
+    {
+        IsEmpty = false;
+        assignedAI = assignee;
+    }
+
+    public void Flood()
+    {
+        if (water == null)
+            return;
+        water.SetActive(true);
+        intresting = -1;
+        if (assignedAI != null)
+        {
+            assignedAI.destiation = null;
+            assignedAI = null;
+        }
+
     }
 }
 
