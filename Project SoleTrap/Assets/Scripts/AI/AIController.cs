@@ -107,8 +107,7 @@ public class AIController : MonoBehaviour
     {
         if (!boo)
         {
-            destiation.GetComponent<Room>().IsEmpty = true;
-            destiation.GetComponent<Room>().IsWorkig = false;
+            destiation.GetComponent<Room>().UnassignRoom();
             sanitylvl -= sanityPoits;
             timerBo = 3;
             anim.SetTrigger("boo");

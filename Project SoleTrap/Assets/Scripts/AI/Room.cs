@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public enum RoomType { map, ring }
+
     public const float WorkSpeed = 0.5f;
     [Header("Properties")]
     [SerializeField] private float workingLvl = 0;
@@ -16,7 +18,11 @@ public class Room : MonoBehaviour
     public float Intresting
     {
         set { intresting = value; }
-        get { return intresting; }
+        get {
+            if (isBlocked)
+                return -1;
+            return intresting; 
+        }
     }
     [SerializeField] private bool isEmpty = true;
     public bool IsEmpty
@@ -30,11 +36,11 @@ public class Room : MonoBehaviour
         set { isWorkig = value; }
         get { return isWorkig; }
     }
+    [SerializeField] private RoomType roomType;
     [Header("Private Fields")]
     [SerializeField] private GameObject water;
     [SerializeField] private AIController assignedAI = null;
-
-    public bool debugFlood = false;
+    [SerializeField] private bool isBlocked = false;
 
     void Update()
     {
@@ -42,8 +48,6 @@ public class Room : MonoBehaviour
         {
             workingLvl += WorkSpeed * Time.deltaTime;
         }
-        if (debugFlood)
-            Flood();
     }
 
     public void AssignRoom(AIController assignee)
@@ -52,19 +56,31 @@ public class Room : MonoBehaviour
         assignedAI = assignee;
     }
 
+    public void UnassignRoom()
+    {
+        IsEmpty = true;
+        assignedAI = null;
+        isWorkig = false;
+    }
+
     public void Flood()
     {
         if (water == null)
             return;
         water.SetActive(true);
-        intresting = -1;
+        IsEmpty = false;
+        isBlocked= true;
         if (assignedAI != null)
         {
             assignedAI.destiation = null;
             assignedAI = null;
         }
+    }
 
+    public void Drain()
+    {
+        water.SetActive(false);
+        IsEmpty = true;
+        isBlocked = false;
     }
 }
-
-enum roomType{ map,ring}
