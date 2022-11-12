@@ -36,7 +36,12 @@ public class Room : MonoBehaviour
         set { isWorkig = value; }
         get { return isWorkig; }
     }
-    [SerializeField] private RoomType roomType;
+    [SerializeField] private RoomType type;
+    public RoomType Type
+    {
+        set { type = value; }
+        get { return type; }
+    }
     [Header("Private Fields")]
     [SerializeField] private GameObject water;
     [SerializeField] private AIController assignedAI = null;
@@ -69,7 +74,7 @@ public class Room : MonoBehaviour
             return;
         water.SetActive(true);
         IsEmpty = false;
-        isBlocked= true;
+        isBlocked = true;
         if (assignedAI != null)
         {
             assignedAI.destiation = null;
