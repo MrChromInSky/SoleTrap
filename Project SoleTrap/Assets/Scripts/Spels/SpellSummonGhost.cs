@@ -12,5 +12,8 @@ public class SpellSummonGhost : Spell
         SpelsMehanics.CreateEvent(eventPrefab, transform);
     }
 
-    public SpellSummonGhost(float cooldown, int manaRequired, int manaCost, GameObject eventPrefab, int sanityDamage = 0) : base(cooldown, manaRequired, manaCost, eventPrefab, sanityDamage) { }
+    public SpellSummonGhost(float cooldown, int manaRequired, int manaCost, GameObject eventPrefab, int sanityDamage = 0) : base(cooldown, manaRequired, manaCost, eventPrefab, sanityDamage) 
+    {
+        eventPrefab.GetComponent<ScaryEvent>().SanityDamage = sanityDamage;
+    }
 }
