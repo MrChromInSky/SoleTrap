@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    //public roomType;
+    public enum RoomType { map, ring }
 
+    public const float WorkSpeed = 0.5f;
+    [Header("Properties")]
     [SerializeField] private float workingLvl = 0;
     public float WorkingLvl
     {
@@ -16,7 +18,12 @@ public class Room : MonoBehaviour
     public float Intresting
     {
         set { intresting = value; }
-        get { return intresting; }
+        get
+        {
+            if (isBlocked)
+                return -1;
+            return intresting;
+        }
     }
     [SerializeField] private bool isEmpty = true;
     public bool IsEmpty
@@ -30,19 +37,57 @@ public class Room : MonoBehaviour
         set { isWorkig = value; }
         get { return isWorkig; }
     }
-
-    void Start()
+    [SerializeField] private RoomType type;
+    public RoomType Type
     {
-        
+        set { type = value; }
+        get { return type; }
     }
+    [Header("Private Fields")]
+    [SerializeField] private GameObject water;
+    [SerializeField] private AIController assignedAI = null;
+    [SerializeField] private bool isBlocked = false;
 
     void Update()
     {
         if(isWorkig)
         {
-            workingLvl += 0.5f * Time.deltaTime;
+            workingLvl += WorkSpeed * Time.deltaTime;
         }
     }
-}
 
-enum roomType{ map,ring}
+    public void AssignRoom(AIController assignee)
+    {
+        IsEmpty = false;
+        assignedAI = assignee;
+    }
+
+    public void UnassignRoom()
+    {
+        IsEmpty = true;
+        assignedAI = null;
+        isWorkig = false;
+    }
+
+    public void Flood()
+    {
+        if (water == null)
+            return;
+        water.SetActive(true);
+        IsEmpty = false;
+        isBlocked = true;
+        if (assignedAI != null)
+        {
+            assignedAI.destiation = null;
+            assignedAI = null;
+        }
+    }
+
+    public void Drain()
+    {
+        water.SetActive(false);
+        IsEmpty = true;
+        isBlocked = false;
+    }
+
+}
