@@ -15826,6 +15826,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 647761835}
     m_Modifications:
     - target: {fileID: 6024753058913324181, guid: 4e991f048a00a904d87c9afec83d453c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024753058913324181, guid: 4e991f048a00a904d87c9afec83d453c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7933534
       objectReference: {fileID: 0}
@@ -28238,6 +28242,8 @@ MonoBehaviour:
   magicNumber: 1
   prefabs:
   - {fileID: 3606526634063601372, guid: 89f7e2707d2f3d14d9c35379ac5fe9c1, type: 3}
+  - {fileID: 996050829512032028, guid: 67046bac70924d74cab38dc40b9364d5, type: 3}
+  - {fileID: 996050829512032028, guid: 67046bac70924d74cab38dc40b9364d5, type: 3}
   - {fileID: 996050829512032028, guid: 67046bac70924d74cab38dc40b9364d5, type: 3}
 --- !u!1001 &2120080930
 PrefabInstance:

@@ -22,7 +22,7 @@ public class UISC : MonoBehaviour
 
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(screenCenter.x *.4f, screenCenter.y *0.3f, 60, 60), "GHOST"))
+        if (GUI.Button(new Rect(screenCenter.x *.4f, screenCenter.y *0.9f, 60, 60), "GHOST"))
         {
             spells.GetComponent<SpelsMehanics>().CastSpell(0);
         }
