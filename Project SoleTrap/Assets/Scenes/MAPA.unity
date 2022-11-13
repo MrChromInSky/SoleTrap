@@ -1919,6 +1919,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spells: {fileID: 2118748628}
+  textures:
+  - {fileID: 2800000, guid: b5835d6ba90df0241a0acec99f4202e1, type: 3}
+  - {fileID: 2800000, guid: 16ea185adf7853843a425bd4ac08373d, type: 3}
+  - {fileID: 2800000, guid: 32ed008f02181d84ca3ff2509e0602c8, type: 3}
+  - {fileID: 2800000, guid: 8d781cebf16b5714aaf3e1f2a0cf1a09, type: 3}
+  - {fileID: 2800000, guid: 1a5e242bd28f9d440a177fc427723911, type: 3}
+  - {fileID: 2800000, guid: 757771058f7e40f4088e8191239c15e7, type: 3}
+  - {fileID: 2800000, guid: b2189bd1313990f47a05634555a2872e, type: 3}
+  - {fileID: 2800000, guid: bda230e24b19d7b4888aaa3a0bd8e45c, type: 3}
 --- !u!1001 &143699455
 PrefabInstance:
   m_ObjectHideFlags: 0
