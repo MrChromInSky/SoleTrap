@@ -29,6 +29,7 @@ public class SpelsMehanics : MonoBehaviour
     {
         spellList.Add(new SpellSummonGhost(40, 45, 15, prefabs[0], 2));
         spellList.Add(new SpellScaryNoises(5, 10, 3, prefabs[1], 2));
+        spellList.Add(new SpellPlazama(5, 10, 3, prefabs[2], 2));
     }
 
     void Update()
