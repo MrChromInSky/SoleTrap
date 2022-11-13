@@ -1,31 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class ScaryEvent : MonoBehaviour
 {
+    private float timer = 1.5f;
 
-    public bool isWarking = false;
 
-    void Start()
+    private void Update()
     {
-        
+        timer -= 1 * Time.deltaTime;
+        if(timer <= 0)
+            Destroy(gameObject);
     }
-
-    void Update()
-    {
-        
-    }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.tag == "Human" && isWarking)
+        if (other.transform.root.tag == "Human")
         {
             other.transform.GetComponent<AIController>().JumpScare(40);
-            isWarking = false;
-            Destroy(gameObject);
         }
     }
 }
