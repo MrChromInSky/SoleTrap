@@ -54,6 +54,10 @@ public class Room : MonoBehaviour
         {
             workingLvl += WorkSpeed * Time.deltaTime;
         }
+        if(isEmpty && assignedAI != null)
+        {
+            assignedAI = null;
+        }
     }
 
     public void AssignRoom(AIController assignee)
