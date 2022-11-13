@@ -32,20 +32,24 @@ public class AIController : MonoBehaviour
     {
         if (destiation == null)
         {
-            FindDestinatin();
+            if(!boo)
+                FindDestinatin();
         }
 
-        else if (transform.position.x != destiation.position.x || transform.position.z != destiation.position.z)
+        else if (transform.position.x != destiation.position.x && transform.position.z != destiation.position.z)
         {
             agent.SetDestination(destiation.position);
             anim.SetBool("walking", true);
         }
         else
         {
-            if (destiation.GetComponent<Room>())
+            if (destiation.GetComponent<Room>() && !boo)
             {
                 if (destiation.GetComponent<Room>().WorkingLvl >= 100)
                 {
+                    destiation.GetComponent<Room>().IsWorkig = false;
+                    destiation.GetComponent<Room>().IsEmpty = true;
+
                     destiation = null;
                     anim.SetBool("working", false);
 
@@ -65,7 +69,7 @@ public class AIController : MonoBehaviour
             destiation = home;
             anim.SetBool("sprint", true);
             agent.speed = 4;
-            if (transform.position.x == home.position.x || transform.position.z == home.position.z)
+            if (transform.position.x == home.position.x && transform.position.z == home.position.z)
             {
                 gameC.howManyHumans -= 1;
                 Destroy(gameObject);
@@ -77,7 +81,7 @@ public class AIController : MonoBehaviour
             timerBo -= 0.5f * Time.deltaTime;
             if(timerBo <= 0)
             {
-                destiation = destiationBackUp;
+                
                 agent.Resume();
                 boo = false;
             }
@@ -108,12 +112,15 @@ public class AIController : MonoBehaviour
 
     public void JumpScare(float sanityPoits)
     {
+        destiation.GetComponent<Room>().IsWorkig = false;
+        destiation.GetComponent<Room>().IsEmpty = true;
+        destiation.GetComponent<Room>().Intresting -= 20;
+        destiation = null;
+        anim.SetBool("working", false);
         sanitylvl -= sanityPoits;
         boo = true;
         timerBo = 3;
         anim.SetTrigger("boo");
-        destiationBackUp = destiation;
-        destiation = null;
         agent.Stop();
         if(sanitylvl <= 0)
         {

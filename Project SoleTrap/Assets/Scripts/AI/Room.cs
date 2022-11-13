@@ -17,7 +17,12 @@ public class Room : MonoBehaviour
     [SerializeField] private float intresting = 100;
     public float Intresting
     {
-        set { intresting = value; }
+        set
+        {
+            if (value < 0)
+                value = 0;
+            intresting = value; 
+        }
         get
         {
             if (isBlocked)
