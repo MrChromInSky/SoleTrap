@@ -7,6 +7,7 @@ public class Room : MonoBehaviour
     public enum RoomType { map, ring, normal, bones}
 
     private bool isDone = false;
+    public GameObject lightForRingRoom;
 
     private GameController gamec;
 
@@ -68,15 +69,45 @@ public class Room : MonoBehaviour
                 {
                     type = RoomType.ring;
                     intresting = 40;
+                    lightForRingRoom.active = true;
                     gamec.ringRoom = transform.GetComponent<Room>();
                 }
                 else
+                {
+                    intresting = Random.Range(60, 100);
+                    workingLvl = Random.Range(0, 40);
+
                     type = RoomType.map;
+                }
                 break;
-            case 1-2:
+            case 1:
+                intresting = Random.Range(60, 100);
+                workingLvl = Random.Range(0, 40);
+
                 type = RoomType.map;
                 break;
-            case 3-5:
+            case 2:
+                intresting = Random.Range(60, 100);
+                workingLvl = Random.Range(30, 80);
+
+                type = RoomType.normal;
+                break;
+            case 3:
+                intresting = Random.Range(60, 100);
+                workingLvl = Random.Range(30, 80);
+
+                type = RoomType.normal;
+                break;
+            case 4:
+                intresting = Random.Range(60, 100);
+                workingLvl = Random.Range(30, 80);
+
+                type = RoomType.normal;
+                break;
+            case 5:
+                intresting = Random.Range(60, 100);
+                workingLvl = Random.Range(30, 80);
+
                 type = RoomType.normal;
                 break;
         }

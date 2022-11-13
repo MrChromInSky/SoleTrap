@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
         {
             Room futureRingRoom = FindObjectOfType<Room>();
             futureRingRoom.Type = Room.RoomType.ring;
+            futureRingRoom.lightForRingRoom.active = true;
             ringRoom = futureRingRoom;
         }
         if (howManyHumans == 0)

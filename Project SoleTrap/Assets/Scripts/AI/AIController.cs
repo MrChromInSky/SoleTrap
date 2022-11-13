@@ -83,6 +83,7 @@ public class AIController : MonoBehaviour
             {
                 
                 agent.Resume();
+                FindDestinatin();
                 boo = false;
             }
         }
