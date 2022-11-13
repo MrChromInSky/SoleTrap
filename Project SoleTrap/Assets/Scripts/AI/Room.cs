@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 
     private bool isDone = false;
     public GameObject lightForRingRoom;
+    public GameObject koniec;
 
     private GameController gamec;
 
@@ -131,7 +132,7 @@ public class Room : MonoBehaviour
                     gamec.ringRoom.Intresting += 40;
                     break;
                 case RoomType.ring:
-                    Debug.Log("GAME OVER");
+                    gamec.Koniec();
                     break;
                 case RoomType.normal:
                     gamec.ringRoom.Intresting += 2;

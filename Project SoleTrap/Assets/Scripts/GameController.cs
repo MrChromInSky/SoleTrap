@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -7,8 +8,12 @@ public class GameController : MonoBehaviour
 
     public int howManyHumans = 0;
     public Room ringRoom;
+    public GameObject defat;
 
+    public GameObject wygrana;
+    public bool isss = false;
     private float timer = 0.1f;
+    private float timer1 = 5f;
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -26,6 +31,21 @@ public class GameController : MonoBehaviour
             ringRoom = futureRingRoom;
         }
         if (howManyHumans == 0)
-            Debug.Log("WIN!");
+        {
+            isss = true;
+            wygrana.active = true;
+        }
+        if(isss)
+            timer1 -= 1 * Time.deltaTime;
+
+        if (timer1 <= 0)
+            SceneManager.LoadScene(4);
     }
+
+    public void Koniec() {
+
+        isss = true;
+        defat.active = true;
+    }
+
 }

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebfc9b3fb4ae5449a3f8c4baf1eee19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sanityDamage: 20
+  sanityDamage: 2
 --- !u!82 &-8282627173153494646
 AudioSource:
   m_ObjectHideFlags: 0
@@ -71,9 +71,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0b1d9d340779b82449573b03a68dff1a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
