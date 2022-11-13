@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public enum RoomType { map, ring }
+    public enum RoomType { map, ring, normal, bones}
+
+    private bool isDone = false;
+
+    private GameController gamec;
 
     public const float WorkSpeed = 0.5f;
     [Header("Properties")]
@@ -52,6 +56,31 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject water;
     [SerializeField] private AIController assignedAI = null;
     [SerializeField] private bool isBlocked = false;
+    private void Start()
+    {
+        gamec = FindObjectOfType<GameController>();
+
+        int random = Random.Range(0, 5);
+        switch (random)
+        {
+            case 0:
+                if (gamec.ringRoom == null)
+                {
+                    type = RoomType.ring;
+                    intresting = 40;
+                    gamec.ringRoom = transform.GetComponent<Room>();
+                }
+                else
+                    type = RoomType.map;
+                break;
+            case 1-2:
+                type = RoomType.map;
+                break;
+            case 3-5:
+                type = RoomType.normal;
+                break;
+        }
+    }
 
     void Update()
     {
@@ -62,6 +91,22 @@ public class Room : MonoBehaviour
         if(isEmpty && assignedAI != null)
         {
             assignedAI = null;
+        }
+        if (workingLvl >= 100 && !isDone)
+        {
+            switch (Type)
+            {
+                case RoomType.map:
+                    gamec.ringRoom.Intresting += 40;
+                    break;
+                case RoomType.ring:
+                    Debug.Log("GAME OVER");
+                    break;
+                case RoomType.normal:
+                    gamec.ringRoom.Intresting += 2;
+                    break;
+            }
+            isDone = true;
         }
     }
 
