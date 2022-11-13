@@ -7,7 +7,7 @@ using UnityEngine;
 public class NextScene : MonoBehaviour
 {
 
-    float Timer = 24;
+    float Timer = 57;
     // Update is called once per frame
     void Update()
     {
