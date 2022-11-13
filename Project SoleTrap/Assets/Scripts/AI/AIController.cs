@@ -64,7 +64,7 @@ public class AIController : MonoBehaviour
         {
             destiation = home;
             anim.SetBool("sprint", true);
-            agent.speed = 8;
+            agent.speed = 4;
             if (transform.position.x == home.position.x || transform.position.z == home.position.z)
             {
                 gameC.howManyHumans -= 1;
