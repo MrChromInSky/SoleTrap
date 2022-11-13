@@ -23,11 +23,8 @@ public class ScaryEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("booooo");
-
-        if (other.transform.root.tag == "Human")
+        if (other.transform.tag == "Human")
         {
-            Debug.Log("aaaaa");
             other.transform.GetComponent<AIController>().JumpScare(sanityDamage);
         }
     }
