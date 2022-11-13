@@ -7,6 +7,12 @@ public class ScaryEvent : MonoBehaviour
 {
     private float timer = 1.5f;
 
+    [SerializeField] private int sanityDamage;
+    public int SanityDamage
+    {
+        set { sanityDamage = value; }
+        get { return sanityDamage; }
+    }
 
     private void Update()
     {
@@ -19,7 +25,7 @@ public class ScaryEvent : MonoBehaviour
     {
         if (other.transform.root.tag == "Human")
         {
-            other.transform.GetComponent<AIController>().JumpScare(40);
+            other.transform.GetComponent<AIController>().JumpScare(sanityDamage);
         }
     }
 }
